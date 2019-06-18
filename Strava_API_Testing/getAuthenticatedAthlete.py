@@ -1,38 +1,38 @@
 import requests
 import json
+from pprint import pprint
 
-#http GET "https://www.strava.com/api/v3/athlete" "Authorization: Bearer 3c349a3dbdd881ad4b8bca00c4056c91ba085a2a"
+'''
+First .py file to test making API requests against the Strava API without using Swagger
+'''
 
-#r = requests.get('https://www.strava.com/api/v3/athlete', headers={'Authorization: Bearer 3c349a3dbdd881ad4b8bca00c4056c91ba085a2a'})
+def getAuthenticatedAthlete_general(base_url, access_token):
 
-myToken = "3c349a3dbdd881ad4b8bca00c4056c91ba085a2a"
-myUrl = 'https://www.strava.com/api/v3/athlete'
-payload = {'Authorization': 'Bearer {}'.format(myToken)}
-head = {'content-type' : 'application/json'}
-response = requests.get(myUrl, data = json.dumps(payload), headers=head)
+	try:
+		token_temp = access_token
+		head = {'content-type' : 'application/json',
+				'Authorization': 'Bearer {}'.format(token_temp)}
+		response = requests.get(base_url, headers = head)
+		#pprint(response)
+		#print (response.status_code)
 
-#response = requests.post(myUrl, data=json.dumps(payload), headers = header)
+		# Return the json response
+		if (response.status_code == 200):
+			return(json.loads(response.content.decode('utf-8')))
+		else:
+			return (None)
 
+	except ApiException as e:
+		print("Exception when calling getLoggedInAthlete: %s\n" % e)
 
-#print (r.status_code)
-print (response.status_code)
+if __name__ == "__main__":
 
+	myToken = "e077cabe5c6542f38742c3b2cd165099947084a2"
+	myUrl = 'https://www.strava.com/api/v3/athlete'
+	# Make an initial API request
+	api_request_response = getAuthenticatedAthlete_general(myUrl, myToken)
 
-# from __future__ import print_function
-# import time
-# import swagger_client
-# from swagger_client.rest import ApiException
-# from pprint import pprint
-
-# # Configure OAuth2 access token for authorization: strava_oauth
-# swagger_client.configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# # create an instance of the API class
-# api_instance = swagger_client.AthletesApi()
-
-# try: 
-#     # Get Authenticated Athlete
-#     api_response = api_instance.getLoggedInAthlete()
-#     #pprint(api_response)
-# except ApiException as e:
-#     print("Exception when calling AthletesApi->getLoggedInAthlete: %s\n" % e)
+	# Upon successful API request
+	for k, v in api_request_response.items():
+		# Print the key value pairs that were returned
+		print("{0} : {1}".format(k,v))
