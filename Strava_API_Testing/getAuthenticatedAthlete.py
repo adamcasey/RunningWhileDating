@@ -27,7 +27,7 @@ def getAuthenticatedAthlete_general(base_url, access_token):
 
 if __name__ == "__main__":
 
-	myToken = "e077cabe5c6542f38742c3b2cd165099947084a2"
+	myToken = "8bdf7d63c84202d819acc2a976a5df5cd1773b6a"
 	myUrl = 'https://www.strava.com/api/v3/athlete'
 	# Make an initial API request
 	api_request_response = getAuthenticatedAthlete_general(myUrl, myToken)
