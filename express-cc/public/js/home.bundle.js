@@ -63,23 +63,14 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(0);
+throw new Error("Module build failed: SyntaxError: /home/masonmontero/Desktop/RunningWhileDating/webpack-demo-app/package.json: Unexpected token < in JSON at position 2\n    at JSON.parse (<anonymous>)\n    at Object.Module._extensions..json (module.js:671:27)\n    at Module.load (module.js:565:32)\n    at tryModuleLoad (module.js:505:12)\n    at Function.Module._load (module.js:497:3)\n    at Module.require (module.js:596:17)\n    at require (internal/module.js:11:18)\n    at find (/home/masonmontero/Desktop/RunningWhileDating/webpack-demo-app/express-cc/node_modules/babel-loader/lib/resolve-rc.js:14:49)\n    at find (/home/masonmontero/Desktop/RunningWhileDating/webpack-demo-app/express-cc/node_modules/babel-loader/lib/resolve-rc.js:24:12)\n    at find (/home/masonmontero/Desktop/RunningWhileDating/webpack-demo-app/express-cc/node_modules/babel-loader/lib/resolve-rc.js:24:12)\n    at Object.module.exports (/home/masonmontero/Desktop/RunningWhileDating/webpack-demo-app/express-cc/node_modules/babel-loader/lib/index.js:111:132)");
 
 /***/ })
 /******/ ]);
