@@ -4,9 +4,13 @@ const DotenvPlugin = require('webpack-dotenv-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
+	// un-minify the output of webpack when it runs
+	mode: "development",
+	// made need to change this to entry: "./src/index.js"
 	entry: {
 		home: './src/home.js',
 	},
+	// tells webpack where to output
 	output: {
 		path: __dirname + '/public/js/',
 		filename: '[name].bundle.js'
@@ -34,10 +38,11 @@ module.exports = {
 	},
 	plugins: [
 		new ExtractTextPlugin("../css/style.css"),
-	    new DotenvPlugin({
+		// removing the .env plugin for now until but will use it later for clientID and clientSecret
+	    /*new DotenvPlugin({
 			sample: './.env.default',
 			path: './.env'
-	    }),
+	    }),*/
 	    new BrowserSyncPlugin({
 	        host: 'localhost',
 	        port: 3001,
@@ -46,5 +51,6 @@ module.exports = {
 		}),
 	],
 	watch: true,
+	// change this to devtool: 'none' if you want to get rid of all the 'eval' stuff in the code webpack outputs
 	devtool: 'source-map'
 };
