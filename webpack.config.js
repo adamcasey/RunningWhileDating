@@ -1,3 +1,4 @@
+const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const DotenvPlugin = require('webpack-dotenv-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
