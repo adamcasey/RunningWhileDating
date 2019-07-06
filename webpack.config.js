@@ -8,7 +8,8 @@ module.exports = {
 	mode: "development",
 	// made need to change this to entry: "./src/index.js"
 	entry: {
-		home: './src/home.js',
+		//home: './src/home.js',
+		home: './src/index.js',
 	},
 	// tells webpack where to output
 	output: {
@@ -16,7 +17,7 @@ module.exports = {
 		filename: '[name].bundle.js'
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.scss$/,
 				use: ExtractTextPlugin.extract({
@@ -30,7 +31,7 @@ module.exports = {
 		        use: {
 			        loader: 'babel-loader',
 			        options: {
-				        presets: ['env']
+				        //presets: ['env']
 					}
 				}
 			}
@@ -47,7 +48,7 @@ module.exports = {
 	        host: 'localhost',
 	        port: 3001,
 	        proxy: 'http://localhost:3000/',
-	        files: ['./views/*.hbs']
+	        files: []
 		}),
 	],
 	watch: true,
