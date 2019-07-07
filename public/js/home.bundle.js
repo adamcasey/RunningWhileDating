@@ -86,24 +86,187 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/app/alert.service.js":
+/*!**********************************!*\
+  !*** ./src/app/alert.service.js ***!
+  \**********************************/
+/*! exports provided: AlertService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AlertService", function() { return AlertService; });
+/* harmony import */ var _utils_inputs_are_valid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/inputs-are-valid */ "./src/app/utils/inputs-are-valid.js");
+
+class AlertService {
+  constructor() {
+    this.errorBox = document.getElementById("error");
+  }
+
+  handleAdditionError(inputs, numbers) {
+    const fullMessage = inputs.reduce((message, str, index) => {
+      if (Object(_utils_inputs_are_valid__WEBPACK_IMPORTED_MODULE_0__["inputsAreValid"])(numbers[index])) {
+        return message + "";
+      } else {
+        return message + `${str} is not a number. `;
+      }
+    }, "Please enter two valid numbers! ");
+
+    this.errorBox.classList.remove("invisible");
+    this.errorBox.innerText = fullMessage;
+  }
+
+  hideErrors() {
+    this.errorBox.classList.add("invisible");
+  }
+}
+
+/***/ }),
+
+/***/ "./src/app/app.js":
+/*!************************!*\
+  !*** ./src/app/app.js ***!
+  \************************/
+/*! exports provided: run */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "run", function() { return run; });
+/* harmony import */ var _utils_inputs_are_valid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/inputs-are-valid */ "./src/app/utils/inputs-are-valid.js");
+/* harmony import */ var _utils_parse_inputs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/parse-inputs */ "./src/app/utils/parse-inputs.js");
+
+
+const run = (alertService, componentService) => {
+  alertService.hideErrors();
+
+  componentService.onClick(() => {
+    alertService.hideErrors();
+    const inputs = componentService.getInputs();
+    const parsedInputs = Object(_utils_parse_inputs__WEBPACK_IMPORTED_MODULE_1__["parseInputs"])(...inputs);
+    if (Object(_utils_inputs_are_valid__WEBPACK_IMPORTED_MODULE_0__["inputsAreValid"])(...parsedInputs)) {
+      const [numA, numB] = parsedInputs;
+      componentService.setResult(numA + numB);
+    } else {
+      componentService.setResult("");
+      alertService.handleAdditionError(inputs, parsedInputs);
+    }
+  });
+};
+
+/***/ }),
+
+/***/ "./src/app/component.service.js":
+/*!**************************************!*\
+  !*** ./src/app/component.service.js ***!
+  \**************************************/
+/*! exports provided: ComponentService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ComponentService", function() { return ComponentService; });
+class ComponentService {
+  constructor() {
+    this.numberOneInput = document.getElementById("numberOne");
+    this.numberTwoInput = document.getElementById("numberTwo");
+    this.addValuesButton = document.getElementById("addValues");
+    this.resultDiv = document.getElementById("result");
+  }
+
+  getInputs() {
+    return [this.numberOneInput.value, this.numberTwoInput.value];
+  }
+
+  setResult(str) {
+    this.resultDiv.innerText = str;
+  }
+
+  onClick(cb) {
+    this.addValuesButton.addEventListener("click", cb);
+  }
+}
+
+/***/ }),
+
+/***/ "./src/app/utils/inputs-are-valid.js":
+/*!*******************************************!*\
+  !*** ./src/app/utils/inputs-are-valid.js ***!
+  \*******************************************/
+/*! exports provided: inputsAreValid */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "inputsAreValid", function() { return inputsAreValid; });
+const inputsAreValid = (...input) => {
+  return input.every(num => typeof num === "number" && !isNaN(num));
+};
+
+/***/ }),
+
+/***/ "./src/app/utils/parse-inputs.js":
+/*!***************************************!*\
+  !*** ./src/app/utils/parse-inputs.js ***!
+  \***************************************/
+/*! exports provided: parseInputs */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseInputs", function() { return parseInputs; });
+const parseInputs = (...input) => {
+  return input.map(str => parseInt(str));
+};
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _app_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app/app */ "./src/app/app.js");
+/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./main.scss */ "./src/main.scss");
+/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_main_scss__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _app_alert_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/alert.service */ "./src/app/alert.service.js");
+/* harmony import */ var _app_component_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app/component.service */ "./src/app/component.service.js");
+
+
+
+
+const alertService = new _app_alert_service__WEBPACK_IMPORTED_MODULE_2__["AlertService"]();
+const componentService = new _app_component_service__WEBPACK_IMPORTED_MODULE_3__["ComponentService"]();
+Object(_app_app__WEBPACK_IMPORTED_MODULE_0__["run"])(alertService, componentService);
+//console.log("J");
+
+/*alert("Webpack Test Print")*/
+/*
+var express = require('express');
+var router = express.Router();
+
+// GET home page. 
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
+module.exports = router;
+*/
+
+/***/ }),
+
+/***/ "./src/main.scss":
+/*!***********************!*\
+  !*** ./src/main.scss ***!
+  \***********************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-/*
-import { run } from "./app/app";
-import "./main.scss";
-import { AlertService } from "./app/alert.service";
-import { ComponentService } from "./app/component.service";
-const alertService = new AlertService();
-const componentService = new ComponentService();
-run(alertService, componentService);
-console.log("J");
-*/
-alert("Webpack Test Print");
+// removed by extract-text-webpack-plugin
 
 /***/ })
 

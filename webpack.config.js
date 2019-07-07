@@ -48,7 +48,7 @@ module.exports = {
 	        host: 'localhost',
 	        port: 3001,
 	        proxy: 'http://localhost:3000/',
-	        files: []
+	        files: ['./index.html']
 		}),
 	],
 	watch: true,
