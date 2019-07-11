@@ -20,10 +20,12 @@ module.exports = {
 		rules: [
 			{
 				test: /\.scss$/,
-				use: ExtractTextPlugin.extract({
-					fallback: "style-loader",
-					use: "css-loader!postcss-loader!sass-loader"
-				}),
+				// use: ExtractTextPlugin.extract({
+				// 	fallback: "style-loader",
+				// 	use: ['css-loader!postcss-loader!sass-loader']
+				// 	//use: ["style-loader","css-loader"] 
+				// }),
+				use: ["style-loader", "css-loader"]
 			},
 			{
 		        test: /\.js$/,
@@ -38,7 +40,7 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new ExtractTextPlugin("../css/style.css"),
+		//new ExtractTextPlugin("../css/style.css"),
 		// removing the .env plugin for now until but will use it later for clientID and clientSecret
 	    /*new DotenvPlugin({
 			sample: './.env.default',
@@ -48,7 +50,7 @@ module.exports = {
 	        host: 'localhost',
 	        port: 3001,
 	        proxy: 'http://localhost:3000/',
-	        files: []
+	        files: ['./index.html']
 		}),
 	],
 	watch: true,
