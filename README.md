@@ -1,4 +1,4 @@
-# RunningWhileDating
+e# RunningWhileDating
 Website (and hopefully app soon) dedicated to matching single runners
 
 # Helpful Links (Hopefully)
@@ -12,5 +12,5 @@ Third-party login tutorial using Passport: https://loopback.io/doc/en/lb3/Tutori
 
 # To run getAuthenticatedAthlete.py
 ```
-$python3 getAuthenticatedAthlet.py
+$python3 getAuthenticatedAthlete.py
 ```
