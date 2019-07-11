@@ -1,4 +1,4 @@
-e# RunningWhileDating
+# RunningWhileDating
 Website (and hopefully app soon) dedicated to matching single runners
 
 # Helpful Links (Hopefully)
