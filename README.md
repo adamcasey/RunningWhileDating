@@ -2,7 +2,7 @@
 Website (and hopefully app soon) dedicated to matching single runners
 
 # Helpful Links (Hopefully)
-Strava API Reference: https://developers.strava.com/docs/reference/
+[Strava API Reference] : (https://developers.strava.com/docs/reference/)
 
 OAuth 2 Workflow: https://requests-oauthlib.readthedocs.io/en/latest/oauth2_workflow.html#web-application-flow
 
