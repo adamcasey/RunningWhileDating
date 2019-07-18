@@ -231,8 +231,7 @@ const parseInputs = (...input) => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app/app */ "./src/app/app.js");
-/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./main.scss */ "./src/main.scss");
-/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_main_scss__WEBPACK_IMPORTED_MODULE_1__);
+!(function webpackMissingModule() { var e = new Error("Cannot find module './main.css'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 /* harmony import */ var _app_alert_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/alert.service */ "./src/app/alert.service.js");
 /* harmony import */ var _app_component_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app/component.service */ "./src/app/component.service.js");
 console.log("Adam");
@@ -258,17 +257,6 @@ router.get('/', function(req, res, next) {
 
 module.exports = router;
 */
-
-/***/ }),
-
-/***/ "./src/main.scss":
-/*!***********************!*\
-  !*** ./src/main.scss ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-throw new Error("Module parse failed: Unexpected token (1:5)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n> body {\n| \tbackground: purple;\n| }");
 
 /***/ })
 
