@@ -859,6 +859,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_main_scss__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _app_alert_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/alert.service */ "./src/app/alert.service.js");
 /* harmony import */ var _app_component_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app/component.service */ "./src/app/component.service.js");
+console.log("Adam");
+
 
 
 
@@ -866,7 +868,7 @@ __webpack_require__.r(__webpack_exports__);
 const alertService = new _app_alert_service__WEBPACK_IMPORTED_MODULE_2__["AlertService"]();
 const componentService = new _app_component_service__WEBPACK_IMPORTED_MODULE_3__["ComponentService"]();
 Object(_app_app__WEBPACK_IMPORTED_MODULE_0__["run"])(alertService, componentService);
-//console.log("J");
+console.log("J");
 
 /*alert("Webpack Test Print")*/
 /*
