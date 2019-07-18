@@ -1,5 +1,6 @@
 const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+//const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const DotenvPlugin = require('webpack-dotenv-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
@@ -16,38 +17,57 @@ module.exports = {
 		path: __dirname + '/public/js/',
 		filename: '[name].bundle.js'
 	},
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				styles: {
+					name: 'styles',
+					test: /\.css$/,
+					chunks: 'all',
+					enforce: true,
+				},
+			},
+		},
+	},
 	module: {
 		rules: [
 			{
 				test: /\.css$/,
-				exclude: /node_modules/,
-				use: ExtractTextPlugin.extract({
-					fallback: "style-loader",
-					use: ["css-loader!postcss-loader!sass-loader"]
-				// 	//use: ["style-loader","css-loader"] 
-				}),
-				//use: ["postcss-loader", "style-loader", "css-loader"]
+				use: [MiniCssExtractPlugin.loader, 'css-loader'],
 			},
-			{
-		        test: /\.js$/,
-		        exclude: /(node_modules|bower_components)/,
-		        use: {
-			        loader: 'babel-loader',
-			        options: {
-				        //presets: ['env']
-					}
-				}
-			}
-		]
+			// {
+			// 	test: /\.css$/,
+			// 	exclude: /node_modules/,
+			// 	use: ExtractTextPlugin.extract({
+			// 		fallback: "style-loader",
+			// 		use: ["css-loader!postcss-loader!sass-loader"]
+			// 	// 	//use: ["style-loader","css-loader"] 
+			// 	}),
+			// 	//use: ["postcss-loader", "style-loader", "css-loader"]
+			// },
+			// {
+		 //        test: /\.js$/,
+		 //        exclude: /(node_modules|bower_components)/,
+		 //        use: {
+			//         loader: 'babel-loader',
+			//         options: {
+			// 	        //presets: ['env']
+			// 		}
+			// 	}
+			// }
+		],
 	},
 	plugins: [
 		//new ExtractTextPlugin("../public/css/style.css"),
-		new ExtractTextPlugin("./main.css"),
+		//new ExtractTextPlugin("./main.css"),
 		// removing the .env plugin for now until but will use it later for clientID and clientSecret
 	    /*new DotenvPlugin({
 			sample: './.env.default',
 			path: './.env'
 	    }),*/
+	    new MiniCssExtractPlugin({
+	    	filename: '[name].css',
+	    }),
 	    // BrowserSync implementation 
 	    new BrowserSyncPlugin({
 	        host: 'localhost',
