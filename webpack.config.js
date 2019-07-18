@@ -49,8 +49,9 @@ module.exports = {
 	    new BrowserSyncPlugin({
 	        host: 'localhost',
 	        port: 3001,
-	        proxy: 'http://localhost:3000/',
-	        files: ['./index.html']
+	        server: { baseDir: ['src']},
+	        //proxy: 'http://localhost:3001/',
+	        files: ['./src/index.html']
 		}),
 	],
 	watch: true,
