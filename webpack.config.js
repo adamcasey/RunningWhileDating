@@ -19,13 +19,14 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.scss$/,
-				// use: ExtractTextPlugin.extract({
-				// 	fallback: "style-loader",
-				// 	use: ['css-loader!postcss-loader!sass-loader']
+				test: /\.css$/,
+				exclude: /node_modules/,
+				use: ExtractTextPlugin.extract({
+					fallback: "style-loader",
+					use: ["css-loader!postcss-loader!sass-loader"]
 				// 	//use: ["style-loader","css-loader"] 
-				// }),
-				use: ["style-loader", "css-loader"]
+				}),
+				//use: ["postcss-loader", "style-loader", "css-loader"]
 			},
 			{
 		        test: /\.js$/,
@@ -40,18 +41,21 @@ module.exports = {
 		]
 	},
 	plugins: [
-		//new ExtractTextPlugin("../css/style.css"),
+		//new ExtractTextPlugin("../public/css/style.css"),
+		new ExtractTextPlugin("./main.css"),
 		// removing the .env plugin for now until but will use it later for clientID and clientSecret
 	    /*new DotenvPlugin({
 			sample: './.env.default',
 			path: './.env'
 	    }),*/
+	    // BrowserSync implementation 
 	    new BrowserSyncPlugin({
 	        host: 'localhost',
 	        port: 3001,
 	        server: { baseDir: ['src']},
 	        //proxy: 'http://localhost:3001/',
-	        files: ['./src/index.html']
+	        // tell Webpack to watch multiple files
+	        files: ['./src/index.html', './src/app/app.js', './main.scss', './main.css']
 		}),
 	],
 	watch: true,
