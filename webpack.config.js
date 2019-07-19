@@ -3,6 +3,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const DotenvPlugin = require('webpack-dotenv-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	// un-minify the output of webpack when it runs
@@ -15,7 +16,7 @@ module.exports = {
 	// tells webpack where to output
 	output: {
 		path: __dirname + '/public/js/',
-		filename: '[name].bundle.js'
+		filename: '[name].bundle.js',
 	},
 	optimization: {
 		splitChunks: {
@@ -32,34 +33,27 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.css$/,
-				use: [MiniCssExtractPlugin.loader, 'css-loader'],
+				test: /\.scss$/,
+				//use: [MiniCssExtractPlugin.loader, 'css-loader'],
+				use: [
+				"style-loader", //3. Inject styles into DOM
+				"css-loader", //2. Turns css into common js
+				"sass-loader" //1. Turns sass into css
+				]
 			},
-			// {
-			// 	test: /\.css$/,
-			// 	exclude: /node_modules/,
-			// 	use: ExtractTextPlugin.extract({
-			// 		fallback: "style-loader",
-			// 		use: ["css-loader!postcss-loader!sass-loader"]
-			// 	// 	//use: ["style-loader","css-loader"] 
-			// 	}),
-			// 	//use: ["postcss-loader", "style-loader", "css-loader"]
-			// },
-			// {
-		 //        test: /\.js$/,
-		 //        exclude: /(node_modules|bower_components)/,
-		 //        use: {
-			//         loader: 'babel-loader',
-			//         options: {
-			// 	        //presets: ['env']
-			// 		}
-			// 	}
-			// }
+			{
+		        test: /\.js$/,
+		        exclude: /(node_modules|bower_components)/,
+		        use: {
+			        loader: 'babel-loader',
+			        //options: {
+				        //presets: ['env']
+					//},
+				},
+			},
 		],
 	},
 	plugins: [
-		//new ExtractTextPlugin("../public/css/style.css"),
-		//new ExtractTextPlugin("./main.css"),
 		// removing the .env plugin for now until but will use it later for clientID and clientSecret
 	    /*new DotenvPlugin({
 			sample: './.env.default',
@@ -67,7 +61,12 @@ module.exports = {
 	    }),*/
 	    new MiniCssExtractPlugin({
 	    	filename: '[name].css',
+	    	ignoreOrder: true,
 	    }),
+	    // new HtmlWebpackPlugin({
+	    // 	title: 'Custom HTML page',
+	    // 	template: './src/index.html'
+	    // }),
 	    // BrowserSync implementation 
 	    new BrowserSyncPlugin({
 	        host: 'localhost',
