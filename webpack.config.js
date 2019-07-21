@@ -33,7 +33,7 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.scss$/,
+			test: /\.scss$/,
 				//use: [MiniCssExtractPlugin.loader, 'css-loader'],
 				use: [
 				"style-loader", //3. Inject styles into DOM
@@ -42,42 +42,42 @@ module.exports = {
 				]
 			},
 			{
-		        test: /\.js$/,
-		        exclude: /(node_modules|bower_components)/,
-		        use: {
-			        loader: 'babel-loader',
-			        //options: {
-				        //presets: ['env']
-					//},
-				},
-			},
-		],
-	},
-	plugins: [
+			test: /\.m?js$/,
+			exclude: /(node_modules|bower_components)/,
+			use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env']
+				}
+			}
+		}
+			],
+		},
+		plugins: [
 		// removing the .env plugin for now until but will use it later for clientID and clientSecret
 	    /*new DotenvPlugin({
 			sample: './.env.default',
 			path: './.env'
-	    }),*/
-	    new MiniCssExtractPlugin({
-	    	filename: '[name].css',
-	    	ignoreOrder: true,
-	    }),
+		}),*/
+		new MiniCssExtractPlugin({
+			filename: '[name].css',
+			ignoreOrder: true,
+		}),
 	    // new HtmlWebpackPlugin({
 	    // 	title: 'Custom HTML page',
 	    // 	template: './src/index.html'
 	    // }),
 	    // BrowserSync implementation 
 	    new BrowserSyncPlugin({
-	        host: 'localhost',
-	        port: 3001,
-	        server: { baseDir: ['src']},
+	    	host: 'localhost',
+	    	port: 3001,
+	    	server: { baseDir: ['src']},
 	        //proxy: 'http://localhost:3001/',
 	        // tell Webpack to watch multiple files
 	        files: ['./src/index.html', './src/app/app.js', './main.scss', './main.css']
-		}),
-	],
-	watch: true,
+	    }),
+	    ],
+	    watch: true,
 	// change this to devtool: 'none' if you want to get rid of all the 'eval' stuff in the code webpack outputs
 	devtool: 'source-map'
 };

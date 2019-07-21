@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/adamcasey/RunningWhileDating#readme",
   "devDependencies": {
-    "babel-loader": "^7.1.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
     "bootstrap": "^4.3.1",
     "browser-sync": "^2.26.7",
     "browser-sync-webpack-plugin": "^2.2.2",
@@ -35,15 +37,13 @@
   },
   "dependencies": {
     "autoprefixer": "^9.6.1",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
     "concurrently": "^4.1.1",
     "css-loader": "^3.0.0",
-    "sass-loader": "^7.1.0",
-    "node-sass": "^4.12.0",
     "mini-css-extract-plugin": "^0.7.0",
+    "node-sass": "^4.12.0",
     "nodemon-webpack-plugin": "^4.0.8",
     "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack-cli": "^3.3.5",
     "webpack-dotenv-plugin": "^2.1.0"
