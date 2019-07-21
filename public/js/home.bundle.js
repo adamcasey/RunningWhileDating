@@ -721,7 +721,7 @@ module.exports = function (css) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./main.scss */ "./src/main.scss");
 /* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_main_scss__WEBPACK_IMPORTED_MODULE_0__);
-//console.log("Adam");
+console.log("Adam");
 
 //import { run } from "./app/app";
 //import {AlertService} from "./app/alert.service";
@@ -729,20 +729,6 @@ __webpack_require__.r(__webpack_exports__);
 // const alertService = new AlertService();
 // const componentService = new ComponentService();
 // run(alertService, componentService);
-// console.log("J");
-
-/*alert("Webpack Test Print")*/
-/*
-var express = require('express');
-var router = express.Router();
-
-// GET home page. 
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-module.exports = router;
-*/
 
 /***/ }),
 
