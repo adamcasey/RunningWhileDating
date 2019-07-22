@@ -1,8 +1,9 @@
 console.log("Adam");
 //import "./main.css";
-//import { run } from "./app/app";
-//import {AlertService} from "./app/alert.service";
-//import {ComponentService} from "./app/component.service";
-// const alertService = new AlertService();
-// const componentService = new ComponentService();
-// run(alertService, componentService);
+app.use("/static", express.static('./app/'));
+import { run } from "./app/app.js";
+import {AlertService} from "./app/alert.service";
+import {ComponentService} from "./app/component.service";
+const alertService = new AlertService();
+const componentService = new ComponentService();
+run(alertService, componentService);
