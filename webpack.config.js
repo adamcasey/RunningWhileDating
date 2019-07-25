@@ -1,3 +1,4 @@
+
 const path = require('path');
 //const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -33,6 +34,7 @@ module.exports = {
 	module: {
 		rules: [
 			{
+			/*
 			test: /\.scss$/,
 				//use: [MiniCssExtractPlugin.loader, 'css-loader'],
 				use: [
@@ -40,6 +42,12 @@ module.exports = {
 				"css-loader", //2. Turns css into common js
 				"sass-loader" //1. Turns sass into css
 				]
+			*/
+			test: /\.css$/,
+			use: [
+				{loader: 'style-loader'},
+				{loader: 'css-loader'}
+			]
 			},
 			{
 			test: /\.m?js$/,
