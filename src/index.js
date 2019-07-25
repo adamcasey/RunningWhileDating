@@ -1,4 +1,8 @@
-console.log("Adam");
+// Removing ';' to see if that changes anything
+console.log("Adam")
+// Try using a different .css file
+import './style.css'
+
 // May need to run npm install express ejs -g
 const express = require('express');
 const app = express();
