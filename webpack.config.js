@@ -5,10 +5,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const DotenvPlugin = require('webpack-dotenv-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
 	// un-minify the output of webpack when it runs
 	mode: "development",
+	target: 'node',
+	externals: ['express'],
 	// made need to change this to entry: "./src/index.js"
 	entry: {
 		//home: './src/home.js',
@@ -18,6 +21,10 @@ module.exports = {
 	output: {
 		path: __dirname + '/public/js/',
 		filename: '[name].bundle.js',
+	},
+	node: {
+  		fs: 'empty',
+  		net: 'empty'
 	},
 	optimization: {
 		splitChunks: {
