@@ -1,3 +1,8 @@
+.DS_Store
+# Add the node_modules directory
+node_modules
+dist
+
 # Logs
 logs
 *.log
@@ -34,3 +39,4 @@ npm-debug.log
 
 # Local env file with credentials
 .env
+
