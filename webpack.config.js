@@ -10,7 +10,8 @@ const nodeExternals = require('webpack-node-externals');
 module.exports = {
 	// un-minify the output of webpack when it runs
 	mode: "development",
-	//target: 'node',
+	target: 'node',
+	//target: 'web',
 	externals: ['express'],
 	// made need to change this to entry: "./src/index.js"
 	entry: {
