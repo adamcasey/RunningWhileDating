@@ -1,4 +1,3 @@
-
 # RunningWhileDating
 Website (and hopefully app soon) dedicated to matching single runners
 
@@ -14,6 +13,8 @@ Website (and hopefully app soon) dedicated to matching single runners
 [Okta Blog (Build a React App with User Authentication in 15 minutes)](https://developer.okta.com/blog/2017/03/30/react-okta-sign-in-widget?Id=22779049&identityType=account&mkt_tok=eyJpIjoiWmpSaU5UazFZV0ptWlRFMSIsInQiOiJcL21DcUZUbWNXMzN3cDVsVXhkMk5LWHZYQzQ4MjVlN1F0c3BDUzZVRVBGNW9rdjVmZ205RHVpZ3ByT3ZQMzNFcldRMFgzbGIxdTFCcTZZMUpcL21JRVN5ZWltaTZuXC9WVmJhZWNHTDh4ckpseUxQRExnYlozVU1YUmk3RDFiQ2N4QyJ9)
 
 [Okta Sign-In Widget Guide](https://developer.okta.com/code/javascript/okta_sign-in_widget/)
+
+[Webpack, React, and Babel 7 Tutorial](https://www.valentinog.com/blog/babel/)
 
 # To run getAuthenticatedAthlete.py
 ```
