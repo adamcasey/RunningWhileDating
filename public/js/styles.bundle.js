@@ -10,7 +10,7 @@ exports.modules = {
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, " body {\n  background-color: coral;\n }\n", ""]);
+exports.push([module.i, " body {\n  background-color: red;\n }\n", ""]);
 
 
 /***/ }),

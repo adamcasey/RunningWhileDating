@@ -10,7 +10,7 @@ const nodeExternals = require('webpack-node-externals');
 module.exports = {
 	// un-minify the output of webpack when it runs
 	mode: "development",
-	target: 'node',
+	//target: 'node',
 	externals: ['express'],
 	// made need to change this to entry: "./src/index.js"
 	entry: {
@@ -50,14 +50,17 @@ module.exports = {
 				"sass-loader" //1. Turns sass into css
 				]
 			*/
-			test: /\.css$/,
+			// looks for all .css files or all .scss files by using the '?'
+			test: /\.s?css$/,
 			use: [
-				{loader: 'style-loader'},
-				{loader: 'css-loader'}
+				'style-loader',
+				'css-loader',
+				'sass-loader'
 			]
 			},
 			{
-			test: /\.m?js$/,
+			test: /\.js$/,
+			//test: /\.m?js$/,
 			exclude: /(node_modules|bower_components)/,
 			use: {
 					loader: 'babel-loader',
