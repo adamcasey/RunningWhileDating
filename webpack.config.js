@@ -10,15 +10,15 @@ const nodeExternals = require('webpack-node-externals');
 module.exports = {
 	// un-minify the output of webpack when it runs
 	mode: "development",
-	target: 'node',
-	//target: 'web',
+	//target: 'node',
+	target: 'web',
 	externals: ['express'],
 	// made need to change this to entry: "./src/index.js"
 	entry: {
 		//home: './src/home.js',
 		home: './src/index.js',
 	},
-	// tells webpack where to output
+	// tells webpack where to output bundles
 	output: {
 		path: __dirname + '/public/js/',
 		filename: '[name].bundle.js',
@@ -82,10 +82,10 @@ module.exports = {
 			filename: '[name].css',
 			ignoreOrder: true,
 		}),
-	    // new HtmlWebpackPlugin({
+	    new HtmlWebpackPlugin({
 	    // 	title: 'Custom HTML page',
 	    // 	template: './src/index.html'
-	    // }),
+	    }),
 	    // BrowserSync implementation 
 	    new BrowserSyncPlugin({
 	    	host: 'localhost',
