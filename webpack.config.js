@@ -45,14 +45,14 @@ module.exports = {
 	     	filename: "./index.html"
 	    }),
 	    // BrowserSync implementation 
-	    new BrowserSyncPlugin({
-	    	host: 'localhost',
-	    	port: 3001,
-	    	server: { baseDir: ['src']},
-	        //proxy: 'http://localhost:3001/',
-	        // tell Webpack to watch multiple files
-	        files: ['./src/index.js']
-	    }),
+	    // new BrowserSyncPlugin({
+	    // 	host: 'localhost',
+	    // 	port: 3001,
+	    // 	server: { baseDir: ['src']},
+	    //     //proxy: 'http://localhost:3001/',
+	    //     // tell Webpack to watch multiple files
+	    //     files: ['./src/index.js']
+	    // }),
     ],
     watch: true,
 	// change this to devtool: 'none' if you want to get rid of all the 'eval' stuff in the code webpack outputs
