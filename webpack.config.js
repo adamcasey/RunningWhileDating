@@ -1,5 +1,4 @@
 const path = require('path');
-//const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 //const DotenvPlugin = require('webpack-dotenv-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -24,15 +23,21 @@ module.exports = {
 				test: /\.html$/,
 				use: [
 					{
-						loader: "html-loader"
+						loader: "html-loader",
+						options: { minimize: true }
 					}
 				]
+			},
+			{
+				test: /\.css$/,
+				use: [MiniCssExtractPlugin.loader, "css-loader"]
 			}
 		]
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
+			chunkFilename: "[id].css",
 			ignoreOrder: true,
 		}),
 	    new HtmlWebpackPlugin({
