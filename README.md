@@ -16,6 +16,8 @@ Website (and hopefully app soon) dedicated to matching single runners
 
 [Webpack, React, and Babel 7 Tutorial](https://www.valentinog.com/blog/babel/)
 
+[NetNinja Youtube - OAuth & Passport](https://www.youtube.com/watch?v=sakQbeRjgwg&list=PL4cUxeGkcC9jdm7QX143aMLAqyM-jTZ2x)
+
 # To run getAuthenticatedAthlete.py
 ```
 $python3 getAuthenticatedAthlete.py
