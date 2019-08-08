@@ -9,6 +9,13 @@ module.exports = {
 	//target: 'node',
 	//target: 'web',
 	//externals: ['express'],
+	entry: {
+		main: "./src/index.js"
+	},
+	// everything will be served out of dist when we run the webpack dev server
+	devServer: {
+		contentBase: "dist"
+	},
 	// made need to change this to entry: "./src/index.js"
 	module: {
 		rules: [
