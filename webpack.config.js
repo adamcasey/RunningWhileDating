@@ -16,6 +16,10 @@ module.exports = {
 	devServer: {
 		contentBase: "dist"
 	},
+	node: {
+		fs: "empty",
+		net: "empty"
+	},
 	// made need to change this to entry: "./src/index.js"
 	module: {
 		rules: [
