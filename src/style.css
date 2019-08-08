@@ -1,3 +1,12 @@
 body {
+<<<<<<< HEAD
 	background-color: blue;
+=======
+	background-color: aqua;
+}
+
+.btn {
+	background-color: red;
+	outline: black;
+>>>>>>> master
 }
