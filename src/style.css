@@ -1,3 +1,8 @@
 body {
 	background-color: aqua;
 }
+
+.btn {
+	background-color: red;
+	outline: black;
+}
