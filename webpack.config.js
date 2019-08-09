@@ -1,9 +1,9 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-//const DotenvPlugin = require('webpack-dotenv-plugin');
+const DotenvPlugin = require('webpack-dotenv-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-//const nodeExternals = require('webpack-node-externals');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
 	//target: 'node',
@@ -16,6 +16,7 @@ module.exports = {
 	devServer: {
 		contentBase: "dist"
 	},
+	target: 'node',
 	// made need to change this to entry: "./src/index.js"
 	module: {
 		rules: [
@@ -45,12 +46,17 @@ module.exports = {
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
 			chunkFilename: "[id].css",
-			ignoreOrder: true,
+			ignoreOrder: true
+		}),
+		new DotenvPlugin({
+			sample: './.env.default',
+			path: './.env',
+			safe: true
 		}),
 	    new HtmlWebpackPlugin({
 	     	template: './src/index.html',
-	     	filename: "./index.html"
-	    }),
+	     	filename: './index.html'
+	    })
 	    // BrowserSync implementation 
 	    // new BrowserSyncPlugin({
 	    // 	host: 'localhost',
