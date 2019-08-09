@@ -11,12 +11,16 @@ module.exports = {
 	//externals: ['express'],
 	entry: {
 		main: "./src/index.js"
+		//main: './app_demo.js'
 	},
 	// everything will be served out of dist when we run the webpack dev server
 	devServer: {
 		contentBase: "dist"
 	},
-	target: 'node',
+	node: {
+		fs: "empty",
+		net: "empty"
+	},
 	// made need to change this to entry: "./src/index.js"
 	module: {
 		rules: [
