@@ -52,8 +52,9 @@ var app = express.createServer();
 
 // configure Express
 app.configure(function() {
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'ejs');
+  //app.set('views', __dirname + '../views');
+  //app.set('views', '../views');
+  //app.set('view engine', 'ejs');
   app.use(express.logger());
   app.use(express.cookieParser());
   app.use(express.bodyParser());
@@ -72,9 +73,9 @@ app.get('/', function(req, res){
   res.render('index', { user: req.user });
 });
 
-app.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account', { user: req.user });
-});
+// app.get('/account', ensureAuthenticated, function(req, res){
+//   res.render('account', { user: req.user });
+// });
 
 app.get('/login', function(req, res){
   res.render('login', { user: req.user });
@@ -103,10 +104,10 @@ app.get('/auth/strava/callback',
     res.redirect('/');
   });
 
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
+// app.get('/logout', function(req, res){
+//   req.logout();
+//   res.redirect('/');
+// });
 
 app.listen(3000);
 
