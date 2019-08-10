@@ -6,7 +6,7 @@
   "scripts": {
     "start": "rm -rf dist && webpack --open --mode development",
     "build": "webpack --mode production",
-    "dev": "rm -rf dist && node bin/www"
+    "dev": "rm -rf dist && node ./src/server.js"
   },
   "repository": {
     "type": "git",
