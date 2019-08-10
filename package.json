@@ -4,9 +4,9 @@
   "description": "Website (and hopefully app soon) dedicated to matching single runners",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open --mode development",
+    "start": "rm -rf dist && webpack --open --mode development",
     "build": "webpack --mode production",
-    "dev": "nodemon --watch config --watch --src/ src/server.js"
+    "dev": "rm -rf dist && node bin/www"
   },
   "repository": {
     "type": "git",

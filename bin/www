@@ -3,8 +3,8 @@
 /**
  * Module dependencies.
  */
-var app = require('../app');
-var debug = require('debug')('cc-express:server');
+var app = require('../src/app');
+var debug = require('debug')('rwd:server');
 var http = require('http');
 
 /**
