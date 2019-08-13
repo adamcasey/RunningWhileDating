@@ -18,6 +18,8 @@ Website (and hopefully app soon) dedicated to matching single runners
 
 [NetNinja Youtube - OAuth & Passport](https://www.youtube.com/watch?v=sakQbeRjgwg&list=PL4cUxeGkcC9jdm7QX143aMLAqyM-jTZ2x)
 
+[Easy Node Authentication using Facebook](https://scotch.io/tutorials/easy-node-authentication-facebook)
+
 # To run getAuthenticatedAthlete.py
 ```
 $python3 getAuthenticatedAthlete.py
