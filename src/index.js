@@ -1,5 +1,8 @@
 /* eslint-disable import/default */
-/* Need to instapp bootstrap dependency: npm install bootstrap */
+/* Need to install bootstrap, jquery, and popper.js dependencies: 
+  npm install jquery popper.js
+  npm install bootstrap 
+  */
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { render } from 'react-dom';
