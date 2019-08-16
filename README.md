@@ -20,6 +20,8 @@ Website (and hopefully app soon) dedicated to matching single runners
 
 [Easy Node Authentication using Facebook](https://scotch.io/tutorials/easy-node-authentication-facebook)
 
+[Reactstrap Styling](https://reactstrap.github.io/components/modals/)
+
 # To run getAuthenticatedAthlete.py
 ```
 $python3 getAuthenticatedAthlete.py
