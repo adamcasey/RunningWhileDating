@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import MyModal from "./MyModal";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const HomePage = () => {
   return (
@@ -11,7 +12,7 @@ const HomePage = () => {
         <li>Review the <Link to="/fuel-savings">demo app</Link></li>
         <li>Remove the demo and start coding: npm run remove-demo</li>
       </ol>
-      <div className="MyModal" buttonLabel="Login">
+      <div>
         <MyModal />
       </div>
     </div>

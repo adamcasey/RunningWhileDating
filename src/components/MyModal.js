@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class MyModal extends React.Component {
   constructor(props) {
@@ -20,8 +21,8 @@ class MyModal extends React.Component {
   render() {
     return (
       <div>
-        <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <Button color="danger" onClick={this.toggle}></Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
             Modal!
