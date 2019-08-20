@@ -22,6 +22,8 @@ Website (and hopefully app soon) dedicated to matching single runners
 
 [Reactstrap Styling](https://reactstrap.github.io/components/modals/)
 
+[SPA React App & Router Guide](https://www.kirupa.com/react/creating_single_page_app_react_using_react_router.htm)
+
 # To run getAuthenticatedAthlete.py
 ```
 $python3 getAuthenticatedAthlete.py
