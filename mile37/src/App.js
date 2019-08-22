@@ -7,11 +7,8 @@ import MyModal from './MyModal';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
         <img src={logo} alt="logo" />
-        Mile 37
-      </header>
-      <MyModal buttonLabel="Log In With Strava"/>
+        <MyModal buttonLabel="Log In With Strava"/>
     </div>
   );
 }
