@@ -1,16 +1,35 @@
 import React from 'react';
+import { Router, Route } from "react-router-dom";
+import history from "./history";
+import UserProvider from "./contexts/UserProvider";
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import MenuBar from "./components/menus/MenuBar";
 //import logo from './logo.svg';
 import logo from './running.jpg';
 import './App.css';
 import MyModal from './MyModal';
 
-function App() {
+const App = () => {
+  // MenuBar and Profile will depend on whether or not user is logged in so wrap it with UserProvider
   return (
-    <div className="App">
-        <img src={logo} alt="logo" />
-        <MyModal buttonLabel="Log In With Strava"/>
-    </div>
-  );
-}
+      <Router history={history}>
+        <UserProvider>
+          <Route path="/" component={MenuBar} />
+          <Route path="/profile" component={Profile} />
+        </UserProvider>
+        <Route path="/" exact component={Home} />
+      </Router>
+    );
+};
+
+// function App() {
+//   return (
+//     <div className="App">
+//         <img src={logo} alt="logo" />
+//         <MyModal buttonLabel="Log In With Strava"/>
+//     </div>
+//   );
+// }
 
 export default App;

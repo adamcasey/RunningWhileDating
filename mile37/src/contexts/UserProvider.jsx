@@ -1,19 +1,19 @@
 import React, { createContext, useState, useEffect } from "react";
-const context = createContext( defaultValue: null);
+const context = createContext((defaultValue: null));
 
 // act as a wrapper to put around all of our components so we can access data
 const UserProvider = ({ children }) => {
 	// initial state is an empty object
-	const [user, setUser] = useState( initialState {});
+	const [user, setUser] = useState( (initialState: {}));
+
 	// life-cycle logic
 	useEffect( effect: () => {
 		fetch( input: "/user")
-		// call user API endoint
-		.then( onfulfilled: res => res.json())
-		.then( onfulfilled: res => setUser(res))
-		.catch( onrejected: err => {
-			console.log(err);
-		})
+			.then( onfulfilled: res => res.json())
+			.then( onfulfilled: res => setUser(res))
+			.catch( onrejected: err => {
+				console.log(err);
+			});
 		// empty array should make it that we have no dependencies because \
 		// useEffect should only be run once
 	}, deps: []);
