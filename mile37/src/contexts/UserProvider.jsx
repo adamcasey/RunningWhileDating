@@ -10,7 +10,7 @@ const UserProvider = ({ children }) => {
 	// life-cycle logic
 	// useEffect( () -> {
 	useEffect( (effect: ()) => {
-		fetch( input: "/user")
+		fetch( (input: "/user"))
 			.then( (onfulfilled: res) => res.json())
 			.then( (onfulfilled: res) => setUser(res))
 			.catch( (onrejected: err) => {
