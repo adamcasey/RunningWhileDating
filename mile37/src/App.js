@@ -6,9 +6,9 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import MenuBar from "./components/menus/MenuBar";
 //import logo from './logo.svg';
-import logo from './running.jpg';
+//import logo from './running.jpg';
 import './App.css';
-import MyModal from './MyModal';
+//import MyModal from './MyModal';
 
 const App = () => {
   // MenuBar and Profile will depend on whether or not user is logged in so wrap it with UserProvider
@@ -23,6 +23,7 @@ const App = () => {
     );
 };
 
+/*
 // function App() {
 //   return (
 //     <div className="App">
@@ -31,5 +32,6 @@ const App = () => {
 //     </div>
 //   );
 // }
+*/
 
 export default App;

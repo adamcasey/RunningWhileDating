@@ -54,7 +54,6 @@ app.get("/auth/logout", (req, res) => {
   res.redirect("/");
 })
 
-/*
+
 const PORT = 5000;
 app.listen(PORT);
-*/
