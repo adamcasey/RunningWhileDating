@@ -46,3 +46,15 @@ app.get("/auth/strava/callback",
     options: (req, res) => {
       res.redirect("/profile");
      }));
+
+// logout a user
+app.get("/auth/logout", (req, res) => {
+  console.log("logging out");
+  user = {};
+  res.redirect("/");
+})
+
+/*
+const PORT = 5000;
+app.listen(PORT);
+*/
