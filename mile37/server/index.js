@@ -37,6 +37,7 @@ const app = express();
 app.user(cors());
 app.use(passport.initialize());
 
+/*
 // define routes 
 // call from front-end to login user with Strava. Will call everything up above
 app.get("/auth/strava", passport.authenticate( strategy: "strava"));
@@ -46,6 +47,22 @@ app.get("/auth/strava/callback",
     options: (req, res) => {
       res.redirect("/profile");
      }));
+*/
+
+// Alternate implementation
+// call from front-end to login user with Strava. Will call everything up above
+app.get("/auth/strava", passport.authenticate("strava"));
+// define callback
+app.get("/auth/strava/callback", 
+  passport.authenticate("strava"),
+    (req, res) => {
+      res.redirect("/profile");
+   });
+
+app.get("/user", (req, res) => {
+  console.log("getting user data");
+  res.send(user);
+});
 
 // logout a user
 app.get("/auth/logout", (req, res) => {
@@ -53,6 +70,9 @@ app.get("/auth/logout", (req, res) => {
   user = {};
   res.redirect("/");
 })
+
+const PORT = 5000;
+app.listen(PORT);
 
 
 const PORT = 5000;
