@@ -34,7 +34,7 @@ passport.user(new StravaStrategy({
 // setup the server
 const app = express();
 // cors will alow us to make requests to Strava
-app.user(cors());
+app.use(cors());
 app.use(passport.initialize());
 
 /*
