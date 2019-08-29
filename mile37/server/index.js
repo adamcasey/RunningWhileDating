@@ -73,7 +73,3 @@ app.get("/auth/logout", (req, res) => {
 
 const PORT = 5000;
 app.listen(PORT);
-
-
-const PORT = 5000;
-app.listen(PORT);
