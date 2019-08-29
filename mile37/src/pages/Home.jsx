@@ -15,10 +15,10 @@ import Terminal from "../components/displays/Terminal";
 const Home = () => {
     return (
         <div className="page" style={{ textAlign: "center" }}>
-            <p className="page-title">Simple OAuth with Node.js</p>
+            <p className="page-title">Mile 37</p>
             <p style={{ fontSize: 20 }}>
-                Passport.js contains support for over
-                <span style={{ color: "var(--primary-red)" }}> 500+ </span>
+                Running is hard. Dating is even harder.
+                <span style={{ color: "var(--primary-red)" }}> We're here to help. </span>
                 Get started today with just your Strava account.
             </p>
             <Terminal
