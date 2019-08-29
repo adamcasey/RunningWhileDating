@@ -21,7 +21,7 @@ passport.user(new StravaStrategy({
   clientID: keys.STRAVA.clientID,
   clientSecret: keys.STRAVA.clientSecret,
   // What will it do after verifying user with log-in credentials
-  callbackUrl: "/auth/strava/callback"
+  callbackURL: "/auth/strava/callback"
 },
   // callback function that will be run right after making request to Strava API
   (accessToken, refreshToken, profile, cb) => {
