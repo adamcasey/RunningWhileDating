@@ -1,27 +1,28 @@
 const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
-const StravaStrategy = require("passport-strava");
+const StravaStrategy = require("passport-strava").Strategy;
 const keys = require("../config");
 const chalk = require("chalk");
+require('https').globalAgent.options.rejectUnauthorized = false;
 
 let user = {};
 
 // Passport requires these
-passport.serializeUser( fn: (user, cb) => {
+passport.serializeUser( (user, cb) => {
   cb(null, user);
 });
 
-passport.deserializeUser( fn: (user, cb) => {
+passport.deserializeUser( (user, cb) => {
   cb(null, user);
 });
 
 // Strava Strategy
-passport.user(new StravaStrategy({
+passport.use(new StravaStrategy({
   clientID: keys.STRAVA.clientID,
   clientSecret: keys.STRAVA.clientSecret,
   // What will it do after verifying user with log-in credentials
-  callbackUrl: "/auth/strava/callback"
+  callbackURL: "/auth/strava/callback"
 },
   // callback function that will be run right after making request to Strava API
   (accessToken, refreshToken, profile, cb) => {
@@ -34,9 +35,10 @@ passport.user(new StravaStrategy({
 // setup the server
 const app = express();
 // cors will alow us to make requests to Strava
-app.user(cors());
+app.use(cors());
 app.use(passport.initialize());
 
+/*
 // define routes 
 // call from front-end to login user with Strava. Will call everything up above
 app.get("/auth/strava", passport.authenticate( strategy: "strava"));
@@ -46,6 +48,22 @@ app.get("/auth/strava/callback",
     options: (req, res) => {
       res.redirect("/profile");
      }));
+*/
+
+// Alternate implementation
+// call from front-end to login user with Strava. Will call everything up above
+app.get("/auth/strava", passport.authenticate("strava"));
+// define callback
+app.get("/auth/strava/callback", 
+  passport.authenticate("strava", { failureRedirect: '/login' }),
+    (req, res) => {
+      res.redirect("/profile");
+   });
+
+app.get("/user", (req, res) => {
+  console.log("getting user data");
+  res.send(user);
+});
 
 // logout a user
 app.get("/auth/logout", (req, res) => {
@@ -54,7 +72,5 @@ app.get("/auth/logout", (req, res) => {
   res.redirect("/");
 })
 
-/*
 const PORT = 5000;
 app.listen(PORT);
-*/
