@@ -27,6 +27,7 @@ passport.use(new StravaStrategy({
   callbackURL: "http://127.0.0.1:30000/auth/strava/callback"
   //callbackURL: "/auth/strava/callback"
 },
+                                
   // callback function that will be run right after making request to Strava API
   /*
   (accessToken, refreshToken, profile, cb) => {
@@ -36,8 +37,22 @@ passport.use(new StravaStrategy({
     return cb(null, profile);
   }));
   */
+                                
+
  // copied from passportjs.org/packages/passport-strava                                
   function(accessToken, refreshToken, profile, cb) {
+  
+    /*
+    Try uncommenting this block if still getting InternalOauth Errors
+        process.nextTick(function () {
+            // To keep the example simple, the user's Strava profile is returned to
+            // represent the logged-in user. In a typical application, you would want
+            // to associate the Strava account with a user record in your database,
+            // and return that user instead.
+            return done(null, profile);
+        });
+   */
+  
     User.findOrCreate({ stravaId: profile.id }, function (err, user) {
       return cb(err, user);
     });
