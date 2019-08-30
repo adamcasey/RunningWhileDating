@@ -52,10 +52,10 @@ app.get("/auth/strava/callback",
 
 // Alternate implementation
 // call from front-end to login user with Strava. Will call everything up above
-app.get("/auth/strava", passport.authenticate("strava"));
+app.get("/auth/strava", passport.authenticate("strava", { failureRedirect: '/login' }, {failWithError: true}));
 // define callback
 app.get("/auth/strava/callback", 
-  passport.authenticate("strava", { failureRedirect: '/login' }),
+  passport.authenticate("strava", { failureRedirect: '/login' }, {failWithError: true}),
     (req, res) => {
       res.redirect("/profile");
    });
