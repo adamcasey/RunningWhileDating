@@ -1,10 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
-const StravaStrategy = require("passport-strava").Strategy;
+//const StravaStrategy = require("passport-strava").Strategy;
 const keys = require("../config");
 const chalk = require("chalk");
 require('https').globalAgent.options.rejectUnauthorized = false;
+
+var StravaStrategy = require('passport-strava').Strategy;
 
 let user = {};
 
@@ -22,15 +24,26 @@ passport.use(new StravaStrategy({
   clientID: keys.STRAVA.clientID,
   clientSecret: keys.STRAVA.clientSecret,
   // What will it do after verifying user with log-in credentials
-  callbackURL: "/auth/strava/callback"
+  callbackURL: "http://127.0.0.1:30000/auth/strava/callback"
+  //callbackURL: "/auth/strava/callback"
 },
   // callback function that will be run right after making request to Strava API
+  /*
   (accessToken, refreshToken, profile, cb) => {
     console.log(chalk.blue(JSON.stringify(profile)));
     // put all of the key:value pairs from the profile into a 'user' object
     user = { ...profile };
     return cb(null, profile);
   }));
+  */
+ // copied from passportjs.org/packages/passport-strava                                
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ stravaId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
+
   
 // setup the server
 const app = express();
