@@ -83,7 +83,7 @@ app.get("/auth/logout", (req, res) => {
   console.log("logging out");
   user = {};
   res.redirect("/");
-})
+});
 
 const PORT = 5000;
 app.listen(PORT);
