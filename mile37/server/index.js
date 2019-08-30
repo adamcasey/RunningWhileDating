@@ -1,23 +1,24 @@
 const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
-const StravaStrategy = require("passport-strava");
+const StravaStrategy = require("passport-strava").Strategy;
 const keys = require("../config");
 const chalk = require("chalk");
+require('https').globalAgent.options.rejectUnauthorized = false;
 
 let user = {};
 
 // Passport requires these
-passport.serializeUser( fn: (user, cb) => {
+passport.serializeUser( (user, cb) => {
   cb(null, user);
 });
 
-passport.deserializeUser( fn: (user, cb) => {
+passport.deserializeUser( (user, cb) => {
   cb(null, user);
 });
 
 // Strava Strategy
-passport.user(new StravaStrategy({
+passport.use(new StravaStrategy({
   clientID: keys.STRAVA.clientID,
   clientSecret: keys.STRAVA.clientSecret,
   // What will it do after verifying user with log-in credentials
@@ -54,7 +55,7 @@ app.get("/auth/strava/callback",
 app.get("/auth/strava", passport.authenticate("strava"));
 // define callback
 app.get("/auth/strava/callback", 
-  passport.authenticate("strava"),
+  passport.authenticate("strava", { failureRedirect: '/login' }),
     (req, res) => {
       res.redirect("/profile");
    });

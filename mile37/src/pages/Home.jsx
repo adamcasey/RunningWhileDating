@@ -21,10 +21,6 @@ const Home = () => {
                 <span style={{ color: "var(--primary-red)" }}> We're here to help. </span>
                 Get started today with just your Strava account.
             </p>
-            <Terminal
-                userData={"passport.authenticate('facebook')"}
-                selected="All"
-            />
             <p style={{ fontSize: 28}}>
                 Popular Strategies
             </p>
