@@ -1,12 +1,14 @@
 const express = require("express");
 const cors = require("cors");
-const passport = require("passport");
-const StravaStrategy = require("passport-strava").Strategy;
+//const passport = require("passport");
+var passport = require("passport");
+//const StravaStrategy = require("passport-strava").Strategy;
+var StravaStrategy = require('passport-strava').Strategy;
 const keys = require("../config");
 const chalk = require("chalk");
 require('https').globalAgent.options.rejectUnauthorized = false;
 
-//var StravaStrategy = require('passport-strava').Strategy;
+
 
 let user = {};
 
@@ -26,18 +28,22 @@ passport.use(new StravaStrategy({
   // What will it do after verifying user with log-in credentials
   callbackURL: "http://127.0.0.1:3000/auth/strava/callback"
   //callbackURL: "/auth/strava/callback"
-},
+  },
                                 
   // callback function that will be run right after making request to Strava API
   
-  (accessToken, refreshToken, profile, cb) => {
+  //(accessToken, refreshToken, profile, cb) => {
+  // Sep. 5 changes from Passport.js documentation
+  function(accessToken, refreshToken, profile, done) {
     console.log(chalk.blue(JSON.stringify(profile)));
     // put all of the key:value pairs from the profile into a 'user' object
     // user = { ...profile };
 
-    // User.findOrCreate({ stravaId: user.id }, (err, user) => {
-    //   return cb(err, user);
-    // });
+    User.findOrCreate(..., function(err, user) => {
+      if (err) { return done(err); }
+       done(null, user);
+    });
+    /*
     process.nextTick(function () {
         // To keep the example simple, the user's Strava profile is returned to
         // represent the logged-in user. In a typical application, you would want
@@ -45,8 +51,10 @@ passport.use(new StravaStrategy({
         // and return that user instead.
         return done(null, profile);
     });
+    */
     //return cb(null, profile);
-  }));
+  }
+));
     
 // setup the server
 const app = express();
