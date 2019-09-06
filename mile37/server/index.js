@@ -33,30 +33,57 @@ passport.use(new StravaStrategy({
   (accessToken, refreshToken, profile, cb) => {
     console.log(chalk.blue(JSON.stringify(profile)));
     // put all of the key:value pairs from the profile into a 'user' object
-    // user = { ...profile };
+    user = { ...profile };
 
-    // User.findOrCreate({ stravaId: user.id }, (err, user) => {
-    //   return cb(err, user);
-    // });
-    process.nextTick(function () {
-        // To keep the example simple, the user's Strava profile is returned to
-        // represent the logged-in user. In a typical application, you would want
-        // to associate the Strava account with a user record in your database,
-        // and return that user instead.
-        return done(null, profile);
+    User.findOrCreate({ stravaId: profile.id }, (err, user) => {
+      return cb(err, user);
     });
     //return cb(null, profile);
   }));
+  
+                                
+  /*
+ // copied from passportjs.org/packages/passport-strava                                
+  function(accessToken, refreshToken, profile, cb) {
+  
     
+    // Try uncommenting this block if still getting InternalOauth Errors
+        process.nextTick(function () {
+            // To keep the example simple, the user's Strava profile is returned to
+            // represent the logged-in user. In a typical application, you would want
+            // to associate the Strava account with a user record in your database,
+            // and return that user instead.
+            return done(null, profile);
+        });
+  
+    // User.findOrCreate({ stravaId: profile.id }, (err, user) => {
+    //   return cb(err, user);
+    // });
+  }
+));
+*/
+  
 // setup the server
 const app = express();
 // cors will alow us to make requests to Strava
 app.use(cors());
 app.use(passport.initialize());
 
+/*
+// define routes 
+// call from front-end to login user with Strava. Will call everything up above
+app.get("/auth/strava", passport.authenticate( strategy: "strava"));
+// define callback
+app.get("/auth/strava/callback", 
+  passport.authenticate(("strava"),
+    options: (req, res) => {
+      res.redirect("/profile");
+     }));
+*/
+
 // Alternate implementation
 // call from front-end to login user with Strava. Will call everything up above
-app.get("/auth/strava", passport.authenticate("strava", { scope: ['read'] }));
+app.get("/auth/strava", passport.authenticate("strava", { failureRedirect: '/login' }, {failWithError: true}));
 // define callback
 app.get("/auth/strava/callback", 
   passport.authenticate("strava", { failureRedirect: '/login' }, {failWithError: true}),
