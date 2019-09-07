@@ -26,7 +26,7 @@ passport.use(new StravaStrategy({
   clientID: keys.STRAVA.clientID,
   clientSecret: keys.STRAVA.clientSecret,
   // What will it do after verifying user with log-in credentials
-  callbackURL: "http://127.0.0.1:3000/auth/strava/callback"
+  callbackURL: "http://localhost:3000/auth/strava/callback"
   //callbackURL: "/auth/strava/callback"
 },
                                 
