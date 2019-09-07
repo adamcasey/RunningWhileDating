@@ -1,14 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
-const StravaStrategy = require("passport-strava").Strategy;
+//const StravaStrategy = require("passport-strava").Strategy;
 const keys = require("../config");
 const chalk = require("chalk");
 require('https').globalAgent.options.rejectUnauthorized = false;
 
 //var StravaStrategy = require('passport-strava').Strategy;
-//var StravaStrategy = require('passport-strava-oauth2').Strategy
-//var util = require('util')
+var StravaStrategy = require('passport-strava-oauth2').Strategy
+var util = require('util')
 
 let user = {};
 
@@ -33,7 +33,8 @@ passport.use(new StravaStrategy({
   // callback function that will be run right after making request to Strava API
   
   (accessToken, refreshToken, profile, cb) => {
-    console.log(chalk.blue(JSON.stringify(profile)));
+    console.log("Passport callback function fired");
+    //console.log(chalk.blue(JSON.stringify(profile)));
     // put all of the key:value pairs from the profile into a 'user' object
     user = { ...profile };
 
@@ -69,15 +70,16 @@ app.get("/auth/strava/callback",
 
 // Alternate implementation
 // call from front-end to login user with Strava. Will call everything up above
+/*
 app.get("/auth/strava", 
   passport.authenticate("strava", { failureRedirect: '/' }, {failWithError: true}));
-/*
+*/
 app.get('/auth/strava',
-  passport.authenticate('strava', { scope: ['public'] }),
+  passport.authenticate('strava', { scope: ['read_all'] }),
   function(req, res) {
     // Request is redirected to Strava for authentication so this shouldn't be called
   });
-*/
+
 // define callback
 app.get("/auth/strava/callback", 
   passport.authenticate("strava", { failureRedirect: '/' }, {failWithError: true}),
