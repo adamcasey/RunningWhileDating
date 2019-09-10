@@ -4,7 +4,7 @@ const passport = require("passport");
 //const StravaStrategy = require("passport-strava").Strategy;
 const keys = require("../config");
 const chalk = require("chalk");
-require('https').globalAgent.options.rejectUnauthorized = false;//
+require('https').globalAgent.options.rejectUnauthorized = false;
 
 //var StravaStrategy = require('passport-strava').Strategy;
 var StravaStrategy = require('passport-strava-oauth2').Strategy
@@ -26,29 +26,28 @@ passport.use(new StravaStrategy({
   clientID: keys.STRAVA.clientID,
   clientSecret: keys.STRAVA.clientSecret,
   // What will it do after verifying user with log-in credentials
-  callbackURL: "http://127.0.0.1:3000/auth/strava/callback"
+  callbackURL: "http://localhost:3000/auth/strava/callback"
   //callbackURL: "/auth/strava/callback"
 },
                                 
   // callback function that will be run right after making request to Strava API
   
   (accessToken, refreshToken, profile, cb) => {
-    console.log(chalk.blue(JSON.stringify(profile)));
+    console.log("Passport callback function fired");
+    //console.log(chalk.blue(JSON.stringify(profile)));
     // put all of the key:value pairs from the profile into a 'user' object
     user = { ...profile };
 
     User.findOrCreate({ stravaId: profile.id }, (err, user) => {
       return cb(err, user);
     });
-    
   /*
   function(accessToken, refreshToken, profile, done) {
     // asynch verification
     process.nextTick(function () {
       return done(null, profile);
-    });
-  */  
-  
+    });  
+  */
  }));
 
 // setup the server
@@ -75,16 +74,15 @@ app.get("/auth/strava/callback",
 app.get("/auth/strava", 
   passport.authenticate("strava", { failureRedirect: '/' }, {failWithError: true}));
 */
-
 app.get('/auth/strava',
-  passport.authenticate('strava', { scope: ['read'] }),
+  passport.authenticate('strava', { scope: ['read_all'] }),
   function(req, res) {
     // Request is redirected to Strava for authentication so this shouldn't be called
   });
 
 // define callback
 app.get("/auth/strava/callback", 
-  passport.authenticate("strava", { failureRedirect: '/home' }, { failWithError: true }),
+  passport.authenticate("strava", { failureRedirect: '/' }, {failWithError: true}),
     (req, res) => {
       res.redirect("/profile");
    });
