@@ -57,7 +57,7 @@ app.use(cors());
 app.use(passport.initialize());
 
 // requiring a directory automatically pulls from the index.js that is in that directory
-app.use(require('./routes');
+//app.use(require('./routes');
 
 /*
 // define routes 
