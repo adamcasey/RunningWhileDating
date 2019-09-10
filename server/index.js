@@ -32,7 +32,6 @@ passport.use(new StravaStrategy({
 },
                                 
   // callback function that will be run right after making request to Strava API
-  
   (accessToken, refreshToken, profile, cb) => {
     console.log("Passport callback function fired");
     //console.log(chalk.blue(JSON.stringify(profile)));
@@ -60,24 +59,7 @@ app.use(passport.initialize());
 // requiring a directory automatically pulls from the index.js that is in that directory
 //app.use(require('./routes');
 
-/*
-// define routes 
 // call from front-end to login user with Strava. Will call everything up above
-app.get("/auth/strava", passport.authenticate( strategy: "strava"));
-// define callback
-app.get("/auth/strava/callback", 
-  passport.authenticate(("strava"),
-    options: (req, res) => {
-      res.redirect("/profile");
-     }));
-*/
-
-// Alternate implementation
-// call from front-end to login user with Strava. Will call everything up above
-/*
-app.get("/auth/strava", 
-  passport.authenticate("strava", { failureRedirect: '/' }, {failWithError: true}));
-*/
 app.get('/auth/strava',
   passport.authenticate('strava', { scope: ['read_all'] }),
   function(req, res) {
