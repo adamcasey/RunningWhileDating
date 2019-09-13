@@ -2,54 +2,57 @@ const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
 //const StravaStrategy = require("passport-strava").Strategy;
+const StravaStrategy = require('passport-strava-oauth2').Strategy
 const keys = require("../config");
 const chalk = require("chalk");
 require('https').globalAgent.options.rejectUnauthorized = false;
 
 //var StravaStrategy = require('passport-strava').Strategy;
-var StravaStrategy = require('passport-strava-oauth2').Strategy
+//var StravaStrategy = require('passport-strava-oauth2').Strategy
 var util = require('util')
+const path = require('path')
 
 let user = {};
 
 // Passport requires these
-passport.serializeUser( (user, cb) => {
-  cb(null, user);
+// passport.serializeUser( (user, cb) => {
+//   cb(null, user);
+// });
+
+// passport.deserializeUser( (user, cb) => {
+//   cb(null, user);
+// });
+
+passport.serializeUser(function(user, done) {
+  console.log('serializeUser - user', user);
+  done(null, user);
 });
 
-passport.deserializeUser( (user, cb) => {
-  cb(null, user);
+passport.deserializeUser(function(obj, done) {
+  console.log('deserializeUser - obj', obj);
+  done(null, obj);
 });
 
 // Strava Strategy
 passport.use(new StravaStrategy({
   clientID: keys.STRAVA.clientID,
   clientSecret: keys.STRAVA.clientSecret,
-  // What will it do after verifying user with log-in credentials
   callbackURL: "http://localhost:3000/auth/strava/callback",
   approvalPrompt: 'force'
-  //callbackURL: "/auth/strava/callback"
 },
-                                
-  // callback function that will be run right after making request to Strava API
-  
-  (accessToken, refreshToken, profile, cb) => {
-    console.log("Passport callback function fired");
-    //console.log(chalk.blue(JSON.stringify(profile)));
-    // put all of the key:value pairs from the profile into a 'user' object
-    user = { ...profile };
-
-    User.findOrCreate({ stravaId: profile.id }, (err, user) => {
-      return cb(err, user);
-    });
-  /*
   function(accessToken, refreshToken, profile, done) {
-    // asynch verification
+    // asynchronous verification, for effect...
+    console.log('accessToken', accessToken);
     process.nextTick(function () {
+      console.log('inside of nextTick');
+      // To keep the example simple, the user's Strava profile is returned to
+      // represent the logged-in user.  In a typical application, you would want
+      // to associate the Strava account with a user record in your database,
+      // and return that user instead.
       return done(null, profile);
-    });  
-  */
- }));
+    });
+  }
+));
 
 // setup the server
 const app = express();
@@ -60,18 +63,6 @@ app.use(passport.initialize());
 // requiring a directory automatically pulls from the index.js that is in that directory
 //app.use(require('./routes');
 
-/*
-// define routes 
-// call from front-end to login user with Strava. Will call everything up above
-app.get("/auth/strava", passport.authenticate( strategy: "strava"));
-// define callback
-app.get("/auth/strava/callback", 
-  passport.authenticate(("strava"),
-    options: (req, res) => {
-      res.redirect("/profile");
-     }));
-*/
-
 // Alternate implementation
 // call from front-end to login user with Strava. Will call everything up above
 /*
@@ -81,13 +72,15 @@ app.get("/auth/strava",
 app.get('/auth/strava',
   passport.authenticate('strava', { scope: ['read_all'] }),
   function(req, res) {
+    console.log('am I here?');
     // Request is redirected to Strava for authentication so this shouldn't be called
   });
 
 // define callback
 app.get("/auth/strava/callback", 
-  passport.authenticate("strava", { failureRedirect: '/' }, {failWithError: true}),
+  passport.authenticate('strava', { failureRedirect: '/' }, {failWithError: true}),
     (req, res) => {
+      console.log('am I here?');
       res.redirect("/profile");
    });
 
