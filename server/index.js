@@ -11,22 +11,24 @@ const keys = require("../config");
 const chalk = require("chalk");
 require('https').globalAgent.options.rejectUnauthorized = false;
 
-//var StravaStrategy = require('passport-strava').Strategy;
-//var StravaStrategy = require('passport-strava-oauth2').Strategy
 var util = require('util')
 const path = require('path')
 
 let user = {};
 
-// Passport requires these
-// passport.serializeUser( (user, cb) => {
-//   cb(null, user);
-// });
 
-// passport.deserializeUser( (user, cb) => {
-//   cb(null, user);
-// });
+// RMB-YouTube Implementation   
+passport.serializeUser((user, cb) => {
+    cb(null, user);
+});
 
+passport.deserializeUser((user, cb) => {
+    cb(null, user);
+});
+
+
+/*
+// My own implementation
 passport.serializeUser(function(user, done) {
   console.log('serializeUser - user', user);
   done(null, user);
@@ -36,45 +38,48 @@ passport.deserializeUser(function(obj, done) {
   console.log('deserializeUser - obj', obj);
   done(null, obj);
 });
+*/
 
 // Strava Strategy
 passport.use(new StravaStrategy({
   clientID: keys.STRAVA.CLIENT_ID,
   clientSecret: keys.STRAVA.CLIENT_SECRET,
-  callbackURL: "http://localhost:3000/auth/strava/callback",
+  callbackURL: "/auth/strava/callback",
+  //callbackURL: "http://localhost:3000/auth/strava/callback",
   //callbackURL: "http://mile37.com:3000/auth/strava/callback",
   approvalPrompt: 'force'
-},
+  },
 
-  /*                                
+  
+  //RMB-YouTube Implementation                             
   // callback function that will be run right after making request to Strava API
   (accessToken, refreshToken, profile, cb) => {
     console.log("Passport callback function fired");
     //console.log(chalk.blue(JSON.stringify(profile)));
     // put all of the key:value pairs from the profile into a 'user' object
     user = { ...profile };
+    credentials = {accessToken, profile};
+    console.log('credentials: ', credentials);
+    
+    return cb(null, profile);
+  }));
 
-    User.findOrCreate({ stravaId: profile.id }, (err, user) => {
-      return cb(err, user);
-    });
-  */
+  /*
+  //My own implementation
   // the callback function that will fire
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
     console.log('accessToken:', accessToken);
     console.log('refreshToken:', refreshToken);
     //console.log('profile:', profile);
-    console.log(chalk.blue(JSON.stringify(profile)));
-    // process.nextTick(function (profile) {
-    //   console.log('inside of nextTick');
-    //   // To keep the example simple, the user's Strava profile is returned to
-    //   // represent the logged-in user.  In a typical application, you would want
-    //   // to associate the Strava account with a user record in your database,
-    //   // and return that user instead.
-    //   return done(null);
-    // });
+    //console.log(chalk.blue(JSON.stringify(profile)));
+
+    user = { ...profile };
+    credentials = {accessToken, profile};
+    console.log('credentials: ', credentials);
   }
-));
+  */
+
 
 // setup the server
 const app = express();
@@ -95,11 +100,12 @@ app.use(passport.session());
 
 app.get('/auth/strava',
   passport.authenticate('strava', { scope: ['read_all'] }),
-  function(req, res) {
-    res.send("Did I make the auth request?");
-    // Request is redirected to Strava for authentication so this shouldn't be called
-    return;
-  });
+  // function(req, res) {
+  //   res.send("Did I make the auth request?");
+  //   // Request is redirected to Strava for authentication so this shouldn't be called
+  //   return;
+  // }
+  );
 
 // define callback
 app.get("/auth/strava/callback",

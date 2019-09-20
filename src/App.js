@@ -27,15 +27,4 @@ const App = () => {
     );
 };
 
-/*
-// function App() {
-//   return (
-//     <div className="App">
-//         <img src={logo} alt="logo" />
-//         <MyModal buttonLabel="Log In With Strava"/>
-//     </div>
-//   );
-// }
-*/
-
 export default App;
