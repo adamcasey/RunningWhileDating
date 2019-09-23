@@ -106,6 +106,7 @@ app.get("/auth/strava/callback",
         return res.send({'status' : 'err', 'message':err.message});
     });
 
+
 app.get("/user", (req, res) => {
     console.log("getting user data");
     res.send(user);
