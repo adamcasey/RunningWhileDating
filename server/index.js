@@ -109,9 +109,9 @@ app.get('/auth/strava',
 
 // define callback
 app.get("/auth/strava/callback",
-  passport.authenticate('strava', { failureRedirect: '/' }, { failWithError: true }),
+  passport.authenticate('strava', { failWithError: true, failureRedirect: '/' }),
     (req, res) => {
-      res.send("Did I make it here?");
+      console.log("Did I make it here?");
       res.redirect("/profile");
    },
    // this should act as an error handler...
