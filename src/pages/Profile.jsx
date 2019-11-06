@@ -19,10 +19,11 @@ const Profile = () => {
 
     const selectedData = selected === "All" ? userData : userData[selected];
     const jsonCode = JSON.stringify(selectedData, null, 4);
-
+    const jsonParsed = JSON.parse(jsonCode);
+    //const items = jsonCode.map(n => ({ value : n }));
     return (
         <div className="page">
-            console.log({userData["displayName"]});
+            console.log({jsonCode});
         </div>
     );
 };
