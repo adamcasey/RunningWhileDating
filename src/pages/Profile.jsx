@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import UserProvider from "../contexts/UserProvider";
-//import Terminal from "../components/displays/Terminal";
-//import Col from "../components/wrappers/Col";
-//import DataTags from "../components/menus/DataTags";
+import Terminal from "../components/displays/Terminal";
+import Col from "../components/wrappers/Col";
+import DataTags from "../components/menus/DataTags";
 import _ from "lodash";
 
 const LoginMsg = "Uh oh, there's nothing to show! " +
@@ -23,7 +23,23 @@ const Profile = () => {
     //const items = jsonCode.map(n => ({ value : n }));
     return (
         <div className="page">
-            console.log({jsonCode});
+            <p className="page-title" style={{ textAlign: "center"}}>
+                {text}
+            </p>
+            <Col className="col-4" style={{ verticalAlign: "top"}}>
+                <DataTags
+                    options={options}
+                    onClick={option => setSelected(option)}
+                    selected={selected}
+                />
+            </Col>
+            <Col className="col-10">
+                <Terminal
+                    userData={userData}
+                    selected={selected}
+                />
+            </Col>
+            <div style= {{ marginBottom: 30 }} />
         </div>
     );
 };

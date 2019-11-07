@@ -32,7 +32,6 @@ const Terminal = ({ userData, selected }) => {
             </div>
             <div className="content">
                 <pre>{jsonCode}</pre>
-                <pre>{photos}</pre>
             </div>
         </div>
     );
