@@ -3,6 +3,20 @@ import React from "react";
 const Terminal = ({ userData, selected }) => {
     const selectedData = selected === "All" ? userData : userData[selected];
     const jsonCode = JSON.stringify(selectedData, null, 4);
+    const parsedCode = JSON.parse(jsonCode, null);
+    var photos = parsedCode.photos;
+
+    var getPhoto = (href) => {
+        var temp = document.createElement("a");
+        temp.href = href;
+        console.log(temp);
+        return temp;
+    }
+
+    var largePhoto = userData.photos;
+
+    var profilePhoto = getPhoto(userData);
+
 
     return (
         <div className="window">
@@ -18,6 +32,7 @@ const Terminal = ({ userData, selected }) => {
             </div>
             <div className="content">
                 <pre>{jsonCode}</pre>
+                <pre>{photos}</pre>
             </div>
         </div>
     );
