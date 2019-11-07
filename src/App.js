@@ -19,7 +19,7 @@ const App = () => {
           <Route path="/profile" component={Profile} />
         </UserProvider>
         <div className="App">
-          <img src={logo} alt="logo" />
+          <img src={ logo } alt="logo" />
           <Route path="/" exact component={Home} />
         </div>
       </Router>

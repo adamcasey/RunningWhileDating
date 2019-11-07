@@ -1,7 +1,9 @@
 import React from "react";
 // eslint-disable-next-line 
 import Terminal from "../components/displays/Terminal";
-import MyModal from '../components/menus/MyModal';
+
+import MyModal from '../components/buttons/MyModal';
+
 //import CardList from "../components/cards/CardList";
 
 /*
@@ -24,9 +26,7 @@ const Home = () => {
                 <span style={{ color: "var(--primary-red)" }}> We're here to help. </span>
                 Get started today with just your Strava account.
             </p>
-            <p style={{ fontSize: 28}}>
-                Popular Strategies
-            </p>
+            <MyModal buttonLabel="Log In With Strava"/>
             <div style={{ marginBottom: 20 }} />
         </div>
     );
