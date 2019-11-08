@@ -3,11 +3,10 @@ import UserProvider from "../contexts/UserProvider";
 import Terminal from "../components/displays/Terminal";
 import Col from "../components/wrappers/Col";
 import DataTags from "../components/menus/DataTags";
+import CalculateSpeed from "../components/displays/CalculateSpeed";
 import _ from "lodash";
 
-const LoginMsg = "Uh oh, there's nothing to show! " +
-    "Login to see how much of your invaluable personal " +
-    "data tech companies have at their disposal.";
+const LoginMsg = "Please login to your Strava account";
 
 const Profile = () => {
     const [selected, setSelected] = useState("All");
@@ -18,8 +17,8 @@ const Profile = () => {
     });
 
     const selectedData = selected === "All" ? userData : userData[selected];
-    const jsonCode = JSON.stringify(selectedData, null, 4);
-    const jsonParsed = JSON.parse(jsonCode);
+    //const jsonCode = JSON.stringify(selectedData, null, 4);
+    //const jsonParsed = JSON.parse(jsonCode);
     //const items = jsonCode.map(n => ({ value : n }));
     return (
         <div className="page">
@@ -39,6 +38,11 @@ const Profile = () => {
                     selected={selected}
                 />
             </Col>
+            <CalculateSpeed 
+                userData={userData}
+                options={options}
+                selected={selected}
+            />
             <div style= {{ marginBottom: 30 }} />
         </div>
     );
