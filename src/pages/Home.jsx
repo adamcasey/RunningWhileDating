@@ -9,8 +9,8 @@ const Home = () => {
         <div className="page" style={{ textAlign: "center" }}>
             <p className="page-title">Fast AF</p>
             <MyModal buttonLabel="Log In With Strava"/>
-            <p style={{ fontSize: 20 }}>
-                So you think you are  
+            <p style={{ fontSize: 30 }}>
+                So you think you&#8217;re
                 <span style={{ color: "var(--primary-red)" }}> fast </span>
                 ...
             </p>
