@@ -17,11 +17,11 @@ const App = () => {
         <UserProvider>
           <Route path="/" component={MenuBar} />
           <Route path="/profile" component={Profile} />
+          <div className="App">
+            <img src={ logo } alt="logo" />
+            <Route path="/" exact component={Home} />
+          </div>
         </UserProvider>
-        <div className="App">
-          <img src={ logo } alt="logo" />
-          <Route path="/" exact component={Home} />
-        </div>
       </Router>
     );
 };

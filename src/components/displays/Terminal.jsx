@@ -3,20 +3,22 @@ import React from "react";
 const Terminal = ({ userData, selected }) => {
     const selectedData = selected === "All" ? userData : userData[selected];
     const jsonCode = JSON.stringify(selectedData, null, 4);
-    const parsedCode = JSON.parse(jsonCode, null);
-    var photos = parsedCode.photos;
+    //const parsedCode = JSON.parse(jsonCode, null);
+    //var photos = parsedCode.photos;
 
-    var getPhoto = (href) => {
-        var temp = document.createElement("a");
-        temp.href = href;
-        console.log(temp);
-        return temp;
-    }
+    // var getPhoto = (href) => {
+    //     var temp = document.createElement("a");
+    //     temp.href = href;
+    //     console.log(temp);
+    //     return temp;
+    // };
 
-    var largePhoto = userData.photos;
+    // var photo = userData.photos.filter((item) => {
+    //     return item;
+    // };
 
-    var profilePhoto = getPhoto(userData);
-
+    // //var largePhoto = userData.photos;
+    // var profilePhoto = getPhoto(photo);
 
     return (
         <div className="window">

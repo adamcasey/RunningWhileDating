@@ -14,8 +14,12 @@
 .App img {
   max-width: 100%;
   height: auto;
-  background-size: 100%;
-  position: relative;
+  /*background-size: 100%;*/
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+  background-size: cover;
 }
 
 .App .btn {
