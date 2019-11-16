@@ -16,8 +16,6 @@ const path = require('path')
 
 let user = {};
 
-
-// RMB-YouTube Implementation   
 passport.serializeUser((user, cb) => {
     cb(null, user);
 });
@@ -25,20 +23,6 @@ passport.serializeUser((user, cb) => {
 passport.deserializeUser((user, cb) => {
     cb(null, user);
 });
-
-
-/*
-// My own implementation
-passport.serializeUser(function(user, done) {
-  console.log('serializeUser - user', user);
-  done(null, user);
-});
-
-passport.deserializeUser(function(obj, done) {
-  console.log('deserializeUser - obj', obj);
-  done(null, obj);
-});
-*/
 
 // Strava Strategy
 passport.use(new StravaStrategy({
@@ -60,23 +44,6 @@ passport.use(new StravaStrategy({
         return cb(null, profile);
     }));
 
-/*
-//My own implementation
-// the callback function that will fire
-function(accessToken, refreshToken, profile, done) {
-  // asynchronous verification, for effect...
-  console.log('accessToken:', accessToken);
-  console.log('refreshToken:', refreshToken);
-  //console.log('profile:', profile);
-  //console.log(chalk.blue(JSON.stringify(profile)));
-
-  user = { ...profile };
-  credentials = {accessToken, profile};
-  console.log('credentials: ', credentials);
-}
-*/
-
-
 // setup the server
 const app = express();
 // cors will alow us to make requests to Strava
@@ -91,9 +58,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// requiring a directory automatically pulls from the index.js that is in that directory
-//app.use(require('./routes');
-
 app.get('/auth/strava', passport.authenticate('strava', { scope: ['read_all'] }));
 
 app.get("/auth/strava/callback",
@@ -105,7 +69,6 @@ app.get("/auth/strava/callback",
     function(err, req, res, next) {
         return res.send({'status' : 'err', 'message':err.message});
     });
-
 
 app.get("/user", (req, res) => {
     console.log("getting user data");

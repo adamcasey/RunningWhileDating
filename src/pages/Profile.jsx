@@ -6,31 +6,16 @@ import UserProvider from "../contexts/UserProvider";
 import CalculateSpeed from "../components/displays/CalculateSpeed";
 import _ from "lodash";
 
-const LoginMsg = "Please login to your Strava account";
+//const LoginMsg = "Please login to your Strava account";
 
 const Profile = () => {
-    const [selected, setSelected] = useState("All");
-    const userData = useContext(UserProvider.context);
-    const text = _.isEmpty(userData) ? LoginMsg : "Explore Your Data";
-    const options = Object.keys(userData).filter(key => {
-        return userData[key] !== null;
-    });
 
-    const selectedData = selected === "All" ? userData : userData[selected];
-    //const jsonCode = JSON.stringify(selectedData, null, 4);
-    //const jsonParsed = JSON.parse(jsonCode);
-    //const items = jsonCode.map(n => ({ value : n }));
+    const userData = useContext(UserProvider.context);
+    //const text = _.isEmpty(userData) ? LoginMsg : "How fast are you...";
+
     return (
         <div className="page">
-            <p className="page-title" style={{ textAlign: "center"}}>
-                {text}
-            </p>
-            <CalculateSpeed 
-                acccesToken={userData.token}
-                options={options}
-                selected={selected}
-            />
-            <div/>
+            <CalculateSpeed acccesToken={userData.token}/>
         </div>
     );
 };

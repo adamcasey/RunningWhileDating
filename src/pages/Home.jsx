@@ -6,10 +6,10 @@ import MyModal from '../components/buttons/MyModal';
 const Home = () => {
 
     return (
-        <div className="page" style={{ textAlign: "center" }}>
+        <div className="page" style={{ textAlign: "center", fontFamily: "Actor" }}>
             <p className="page-title">Fast AF</p>
             <MyModal buttonLabel="Log In With Strava"/>
-            <p style={{ fontSize: 30 }}>
+            <p style={{ fontSize: 30, position: "absolute" }}>
                 So you think you&#8217;re
                 <span style={{ color: "var(--primary-red)" }}> fast </span>
                 ...

@@ -1,33 +1,41 @@
-import React, { Component } from 'react';
-//import PropTypes from 'prop-types';
+import React, { Component, useState } from 'react';
 
-class  CalculateSpeed extends Component {
-  
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     fastAF: false,
-  //     accessToken: props.accessToken
-  //   }
-  // }
-  
-  // getSpeed = (e) => {
-  //   e.preventDefault();
-  //   this.setState( {entries: Object.entries(this.props.userData) });
-  // }
 
-  render() {
+const CalculateSpeed = (props) => {
+
+    const [accessToken, setAccessToken] = useState(props.accessToken);
+    //const text = _.isEmpty(userData) ? LoginMsg : "How fast are you...";
+
     return (
-      <div style={{ fontSize: 40 }}>
-        { this.props.accessToken }
+       <div style={{ fontSize: 20, color: "red", textAlign: "center", whiteSpace: "pre"}}>
+          Accesstoken should be here {'\n'}
+          { accessToken }
+          But it isnt...
       </div>
-    )
-  }
-}
+    );
+};
 
-// //PropTypes
-// CalculateSpeed.propTypes = {
-//   // Not sure what goes here
+export default CalculateSpeed;
+
+// class CalculateSpeed extends Component {
+
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       fastAF: false,
+//       accessToken: props.accessToken
+//     }
+//   }
+  
+//   render() {
+//     return (
+//       <div style={{ fontSize: 20, color: "red", textAlign: "center", whiteSpace: "pre"}}>
+//         Accesstoken should be here {'\n'}
+//         { this.state.fastAF }
+//         But it isnt...
+//       </div>
+//     )
+//   }
 // }
 
-export default CalculateSpeed
+// export default CalculateSpeed
