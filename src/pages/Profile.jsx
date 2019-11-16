@@ -10,6 +10,7 @@ import _ from "lodash";
 
 const Profile = () => {
 
+
     const userData = useContext(UserProvider.context);
     //const text = _.isEmpty(userData) ? LoginMsg : "How fast are you...";
 
