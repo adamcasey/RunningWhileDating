@@ -8,17 +8,18 @@ import _ from "lodash";
 
 //const LoginMsg = "Please login to your Strava account";
 
-const Profile = () => {
 
-
-    const userData = useContext(UserProvider.context);
+class Profile extends React.Component {
+    
     //const text = _.isEmpty(userData) ? LoginMsg : "How fast are you...";
-
-    return (
-        <div className="page">
-            <CalculateSpeed acccesToken={userData.token}/>
-        </div>
-    );
-};
+    render() {
+        //const userData = useContext(UserProvider.context);
+        return (
+            <div className="page">
+                <CalculateSpeed />
+            </div>
+        )
+    }
+}
 
 export default Profile;
