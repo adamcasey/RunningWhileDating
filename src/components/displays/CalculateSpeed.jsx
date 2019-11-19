@@ -72,7 +72,8 @@ const CalculateSpeed = () => {
           {
             method: "GET",
             headers: new Headers({
-              Accept: "application/vnd.github.cloak-preview"
+              Accept: "application/vnd.github.cloak-preview",
+              Authorization: Bearer YOURACCESSTOKEN
             })
           }
         )
