@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+// eslint-disable-next-line
+import React, { useContext, useState, Component } from 'react';
 import UserProvider from "../../contexts/UserProvider";
-//import React, { Component, useState } from 'react';
+
 
 const CalculateSpeed = () => {
 
