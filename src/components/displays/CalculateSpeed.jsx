@@ -58,30 +58,20 @@ const CalculateSpeed = () => {
     /*
     Example link: https://blog.bitsrc.io/making-api-calls-with-react-hooks-748ebfc7de8c
 
-    const [page, setPage] = useState(1);
-    const [commitHistory, setCommitHistory] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [photos, setPhotos] = useState([]);
 
-    const loadMoreCommit = () => {
-      setPage(page + 1);
-    };
+
+    async function fetchData() {
+      const res = await fetch("https://swapi.co/api/planets/4/");
+      res
+        .json()
+        .then(res => setPlanets(res))
+        .catch(err => setErrors(err));
+    }
+
     useEffect(() => {
-      fetch(
-        `https://www.strava.com/api/v3=${page}`,
-          {
-            method: "GET",
-            headers: new Headers({
-              Accept: "application/vnd.github.cloak-preview"
-            })
-          }
-        )
-        .then(res => res.json())
-        .then(response => {
-          setCommitHistory(response.items);
-          setIsLoading(false);
-        })
-        .catch(error => console.log(error));
-    }, [page]);
+      fetchData();
+    }, []);
   */
 
     return (
