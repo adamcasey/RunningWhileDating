@@ -5,7 +5,7 @@ const axios = require("axios").create({
   baseURL: "https://www.strava.com/api/v3"
 });
 const passport = require("passport");
-//const StravaStrategy = require("passport-strava").Strategy;
+
 const StravaStrategy = require("passport-strava-oauth2").Strategy;
 const keys = require("../config");
 const chalk = require("chalk");
@@ -31,8 +31,6 @@ passport.use(
       clientID: keys.STRAVA.CLIENT_ID,
       clientSecret: keys.STRAVA.CLIENT_SECRET,
       callbackURL: "/auth/strava/callback",
-      //callbackURL: "http://localhost:3000/auth/strava/callback",
-      //callbackURL: "http://mile37.com:3000/auth/strava/callback",
       approvalPrompt: "force"
     },
     (accessToken, refreshToken, profile, cb) => {

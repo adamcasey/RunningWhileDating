@@ -14,73 +14,73 @@ import ButtonList from "../buttons/ButtonList";
 import history from "../../history";
 
 const StyledMenu = withStyles({
-    paper: {
-        border: "1px solid #d3d4d5"
-    }
+  paper: {
+    border: "1px solid #d3d4d5"
+  }
 })(props => (
-    <Menu
-      elevation={0}
-      getContentAnchorEl={null}
-      anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center",
-      }}
-      transformOrigin={{
-          vertical: "top",
-          horizontal: "center",
-      }}
-      {...props}
-    />
+  <Menu
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: "bottom",
+      horizontal: "center"
+    }}
+    transformOrigin={{
+      vertical: "top",
+      horizontal: "center"
+    }}
+    {...props}
+  />
 ));
 
 const StyledMenuItem = withStyles(theme => ({
-    root: {
-        "&:focus": {
-            backgroundColor: "var(--primary-red)",
-            "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-                color: theme.palette.common.white,
-            }
-        }
+  root: {
+    "&:focus": {
+      backgroundColor: "var(--primary-red)",
+      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
+        color: theme.palette.common.white
+      }
     }
+  }
 }))(MenuItem);
 
 const UserDropDown = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const handleClick = event => setAnchorEl(event.currentTarget);
-    const handleClose = () => setAnchorEl(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClick = event => setAnchorEl(event.currentTarget);
+  const handleClose = () => setAnchorEl(null);
 
-    return (
-        <div style={{ float: "right" }}>
-            <IconButton
-                href=""
-                style={{ color: "white", padding: "13px 12px" }}
-                onClick={handleClick}
-            >
-                <MoreVertIcon />
-            </IconButton>
+  return (
+    <div style={{ float: "right" }}>
+      <IconButton
+        href=""
+        style={{ color: "white", padding: "13px 12px" }}
+        onClick={handleClick}
+      >
+        <MoreVertIcon />
+      </IconButton>
 
-            <StyledMenu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-            >
-                <StyledMenuItem onClick={() => history.push("/")}>
-                    <ListItemIcon>
-                        <HomeIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Home" />
-                </StyledMenuItem>
+      <StyledMenu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <StyledMenuItem onClick={() => history.push("/")}>
+          <ListItemIcon>
+            <HomeIcon />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
+        </StyledMenuItem>
 
-                <StyledMenuItem onClick={() => history.push("/profile")}>
-                    <ListItemIcon>
-                        <AccountCircle />
-                    </ListItemIcon>
-                    <ListItemText primary="Profile" />
-                </StyledMenuItem>
-                <ButtonList />
-            </StyledMenu>
-        </div>
-    );
+        <StyledMenuItem onClick={() => history.push("/profile")}>
+          <ListItemIcon>
+            <AccountCircle />
+          </ListItemIcon>
+          <ListItemText primary="Profile" />
+        </StyledMenuItem>
+        <ButtonList />
+      </StyledMenu>
+    </div>
+  );
 };
 
 export default UserDropDown;

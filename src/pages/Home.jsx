@@ -1,10 +1,20 @@
 import React from "react";
-import MyModal from "../components/buttons/MyModal";
 
 const Home = () => {
+  function handleClick() {
+    console.log("I've been clicked");
+  }
+
   return (
     <div className="page" style={{ textAlign: "center", fontFamily: "Actor" }}>
-      <MyModal buttonLabel="Log In With Strava" />
+      <button
+        type="button"
+        className="btn btn-primary btn-lg"
+        onClick={handleClick}
+        style={{ backgroundColor: "#FC6100", border: "none" }}
+      >
+        Am I fast AF?
+      </button>
     </div>
   );
 };

@@ -23,6 +23,7 @@ const CalculateSpeed = () => {
 
   //let accessToken = userData.token;
 
+  //eslint-disable-next-line
   const stravaInfo = {
     apiURL: `https://www.strava.com/api/v3`,
     accessToken: userData.token
